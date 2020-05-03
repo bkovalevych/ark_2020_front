@@ -1,8 +1,6 @@
 import './App.css';
 import '../node_modules/uikit/dist/css/uikit.min.css';
 import  React from 'react';
-import {findSubscribes} from './functions/follower'
-import {getUsers} from './functions/userFunctions'
 import Cages from './components/cages/cages';
 import Farms from './components/farms/farms'
 import OriginalMenu from './components/original_menu/original_menu';
@@ -14,9 +12,8 @@ import jwt from 'jwt-decode';
 
 import Velocity from 'velocity-animate'
 import "bootswatch/dist/cyborg/bootstrap.min.css"
-import Loader from './components/loader/loader'
+
 import Profile from './components/profile/profile'
-import {getMedia} from "./functions/moveMedia";
 
 class App extends React.Component {
     constructor(props) {
