@@ -1,0 +1,49 @@
+.mainBox {
+    display: grid;
+    grid-auto-columns: 20%;
+}
+
+.myHover {
+
+}
+
+.myHover:hover {
+    background: rgba(115, 255, 113, 0.56);
+}
+
+
+.my:hover {
+    background: rgba(48, 53, 170, 0.72);
+}
+
+.textNormal {
+
+    z-index: 1;
+    color: rgba(11, 13, 12, 0.89);
+    font-size: 20px;
+    background-color: rgba(244, 244, 244, 0.8);
+}
+
+.textNormal:before, .textNormal:after {
+    z-index: 0;
+    position: absolute;
+    content: "";
+    width: 25%;
+    height: 30px;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+}
+
+.textNormal:before {
+    left: 30px;
+    margin-left: 0;
+    margin-top: -30px;
+    border-bottom: 30px solid rgba(244, 244, 244, 0.8);
+}
+
+.textNormal:after {
+    right: 30px;
+    margin-top: -16px;
+    margin-left: 0;
+    border-top: 30px solid rgba(244, 244, 244, 0.8);
+}

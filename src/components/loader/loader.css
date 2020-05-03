@@ -1,0 +1,46 @@
+.bar {
+    width: 15px;
+    height: 200px;
+    margin-top: 120px;
+    margin-left: 0;
+    transition: .3s all linear;
+    transform-origin: 0 50%;
+
+}
+
+.over {
+    transform: rotateX(30deg);
+    text-align: center;
+    transform-style: preserve-3d;
+    animation: anim 10s infinite linear reverse;
+    transform-origin: 50% 50%;
+    border-radius: 500px;
+    font-size: 50px;
+    box-shadow:  0 10px 300px 20px #4750ff;
+}
+
+.loader {
+    margin-left: -325px;
+    margin-top: 80px;
+    box-shadow: #ff1f30 2px 2px 5px 5px;
+    position: fixed;
+    overflow-y: hidden;
+    height: 500px;
+    display: inline-flex;
+    width: 500px;
+    perspective: 250px;
+    transform-origin: 0 0;
+    border-radius: 250px;
+    border-bottom: #0a0a08 10px groove;
+    border-top: aqua 10px groove;
+}
+
+@keyframes anim {
+
+    25% {
+        transform: rotateY(-60deg);
+    }
+    75% {
+        transform: rotateY(45deg);
+    }
+}

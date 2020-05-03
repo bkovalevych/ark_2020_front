@@ -1,0 +1,109 @@
+.box {
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top:150px;
+    margin-left: 20px;
+
+}
+.box > *{
+    flex: 1 1 80px;
+    --height: 20px;
+}
+
+.box .item_out:nth-of-type(2n + 1) {
+    top: -80px;
+}
+.leftSide .item_out:nth-of-type(2n + 1) {
+    top: -87px;
+}
+
+.leftSide {
+    width: 150px;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-left: 20px;
+    left: 20px;
+    display: flex;
+
+}
+.leftSide > .checked > .item {
+    background: rgba(48, 30, 204, 0.49);
+}
+.leftSide > .checked > .item:after {
+    border-top-color: rgba(48, 30, 204, 0.49);
+}
+.leftSide > .checked > .item:before {
+    border-bottom-color: rgba(48, 30, 204, 0.49);
+}
+
+.myToggle {
+    display: block;
+    left: 40px;
+    position: fixed;
+    color: #ff1f30;
+    z-index: 10;
+    background-color: #8e8e8e;
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.my_hide {
+    display: none;
+}
+.leftSide .item_out {
+    --height: 20px;
+    --width: 155px;
+    margin: 0 -40px 135px -40px;
+    position: relative;
+}
+.leftSide > *{
+    flex: 1 1 80px;
+}
+
+.outerLeftSide {
+    border-left: 4px dotted darkblue;
+    border-right: 4px dotted #8a8b84;
+    z-index: 4;
+    height: 100%;
+    width: 250px;
+    left: 0;
+    top:0;
+    padding-left: 30px;
+    padding-top: 150px;
+    position: fixed;
+    background-color: rgb(115, 164, 255);
+}
+.outerLeftSide > hr {
+    height: 2px;
+    margin-left: -20px;
+    margin-top: -150px;
+    background-color: #ff6b48;
+}
+
+
+@media screen and (min-width: 900px) {
+    .myToggle {
+
+        display: none;
+    }
+    .outerLeftSide {
+        display: block;
+        color: #ef35ff;
+        background-color: rgba(115, 164, 255, 0.53);
+    }
+}
+
+
+/*@media screen and (min-width: 900px) {*/
+/*    .box {*/
+/*        width: 800px;*/
+/*        display: inline-flex;*/
+/*        left: 40px;*/
+/*        flex-wrap: wrap;*/
+/*        top:70px;*/
+/*        position: absolute;*/
+/*    }*/
+/*}*/

@@ -1,26 +1,53 @@
 .App {
   text-align: center;
-  margin-top: 60px;
-  border-left: darkslategrey groove 2px;
-  border-right: darkslategrey groove 2px;
+  border-left: #7d7f7b solid 1px;
+  border-right: #7d7f7b solid 1px;
 
-  background: rgba(95, 141, 141, 0.72);
+  background: rgba(137, 141, 132, 0.26);
   z-index: 1;
   position: absolute;
-  width: 100%;
+  min-width: 410px;
   min-height: 100vh;
-  padding: 5px 30px 0 30px;
+  padding: 5px 30px 50px 30px;
 }
 
 #root {
   background: #2b2b2b;
 }
 
+/*.ball {*/
+/*  border-radius: 200px;*/
+/*  background-color: #f3fff8;*/
+/*  position: absolute;*/
+/*  transform-origin: 600% 500%;*/
+/*}*/
 .ball {
-  border-radius: 200px;
-  background-color: #f3fff8;
   position: absolute;
-  transform-origin: 600% 500%;
+  color: #f3fff8;
+  width: 75px;
+  height: 43.30px;
+  background-color: #cccc13;
+}
+
+.ball:before,
+.ball:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 38px solid transparent;
+  border-right: 38px solid transparent;
+}
+
+.ball:before {
+  bottom: 100%;
+  border-bottom: 22px solid #cccc13;
+}
+
+.ball:after {
+  top: 100%;
+  width: 0;
+  left:0;
+  border-top: 22px solid #cccc13;
 }
 body {
   background-color: #2b2b2b;
@@ -29,22 +56,23 @@ body {
 
 
 .dark {
-  background-image: url("./res/img/background.jpg");
+
+
   background-repeat: no-repeat;
   position: fixed;
   z-index: 0;
   width: 100%;
   height: 100vh;
-  background-attachment: fixed;
+  /*background-attachment: fixed;*/
   perspective: 5px;
   background-size: cover;
 }
 
 @media screen and (min-width: 900px) {
   .App {
-    margin: 60px 70px 0 70px;
+    margin: 60px 20px 0 250px;
 
-    width: 90%;
+    width: 70%;
   }
 }
 
