@@ -11,14 +11,17 @@ import {
     faEllipsisH,
     faBars,
     faChargingStation,
-    faUser
+    faUser,
+    faToggleOff,
+    faToggleOn
 } from '@fortawesome/free-solid-svg-icons'
 
 export default withRouter(function (props) {
     const [selectedItem, setItem] = useState(0);
     const [lanShow, lanSet] = useState(false);
-    let animOn = true;
+    const [animOn, setAnim] = useState(true);
     let openedTable = false;
+
     const goToLink = (val) => {
         props.history.push(val);
     };
@@ -56,12 +59,12 @@ export default withRouter(function (props) {
     };
 
     const animationHandle = () => {
-        animOn = !animOn;
-        if (animOn) {
+        if (!animOn) {
             document.getElementsByClassName('dark')[0].children[0].style.display = 'block';
         } else {
             document.getElementsByClassName('dark')[0].children[0].style.display = 'none';
         }
+        setAnim(!animOn);
     };
     const menuHandle = () => {
         openedTable = !openedTable;
@@ -75,11 +78,20 @@ export default withRouter(function (props) {
     const textForAll = [
         props.strings.aboutUs,
         props.strings.language,
-        props.strings.animation,
         [
-            <FontAwesomeIcon icon={faUser} color='#000' size='2x'/>,
-            props.user? 'user': props.strings.signUp
-        ]
+            animOn?
+                <FontAwesomeIcon icon={ faToggleOn} size={'2x'} color={'green'} />:
+                <FontAwesomeIcon icon={ faToggleOff} size={'2x'} color={'red'}/>
+                ,
+            props.strings.animation
+        ],
+        props.user?
+            props.user.name
+            :
+            [<FontAwesomeIcon icon={faUser} color='#000' size='2x'/>,
+                props.strings.menuProfile],
+
+
     ];
 
     const textForUser = props.user? [

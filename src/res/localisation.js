@@ -5,6 +5,7 @@ import LocalizedStrings from 'react-localization';
      previous: 'previous',
      next: 'next',
      save: "Save",
+     change: "Change",
      aboutUs: "About us",
      farms: 'Farms',
      cages: 'Cages',
@@ -31,8 +32,6 @@ import LocalizedStrings from 'react-localization';
 
      animation: "animation",
      language: "language",
-     subscribe: "subscribe",
-     unsubscribe: "unsubscribe",
      mainInfo: "With the advancement of technology, we have learned to transfer part of the environment to a computer for further interaction. It's about the media. We can receive sound (sound waves) and images (electromagnetic waves) by converting wave data into electric waves. Electric waves, on the other hand, can also output audio or images to share with others. For the business it is proposed to develop a system that accepts the movement of the person at the electric level, so that the exit would be able to convey the movement to another as a new kind of media. The goal is to reproduce certain movements, which in fact at the muscle level represents a change in the potential of neuronal cells. By affecting the resting potential of neuron cells from the outside, muscle contractions can be caused. These are skeletal muscles because they are more likely to interact with them. It is dangerous to control the tongue, heart, or other internal organs. Based on the interaction with nerve cells, some pathologies or diseases can also be identified. For example, myopathy is a disease that is not accompanied by pain, which can cause weakness in certain muscles.",
 
      popular: "Popular",
@@ -41,6 +40,7 @@ import LocalizedStrings from 'react-localization';
 
  },
  ua: {
+     change: "Змінити",
      previous: 'попередня',
      next: 'наступна',
      save: "Зберегти",
@@ -71,8 +71,6 @@ import LocalizedStrings from 'react-localization';
 
      animation: "Анімація",
      language: "Мова",
-     subscribe: "Підписатись",
-     unsubscribe: "Відписатись",
 
      popular: "Популярне",
      fresh: "Свіже",

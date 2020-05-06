@@ -64,7 +64,15 @@ let cages = [
     {paramA: "valA1", paramB: "valB", paramC: "valC", paramD: "valD", id: '39', idFarm: '14'}
 ];
 
+function queryToString(obj) {
+    return '?' +
+        Object.keys(obj)
+        .map(key => (`${key}=${obj[key]}`))
+        .join('&');
+}
+
 export default class List {
+
     constructor(collectionName, page, setPage, id) {
 
 
@@ -77,30 +85,33 @@ export default class List {
         }
         this.selected = [];
         this.elements = [];
-        this.limit = 18;
+        this.limit = 6;
         this.page = page;
         this.setPage = setPage;
         this.canPrevious = this.page > 0;
         let indexRight = (this.page + 1) * this.limit;
-        this.canNext = indexRight < this.setOfData.length;
+        this.canNext = true//indexRight < this.setOfData.length;
+        this.query = {}
         this.getVal()
     }
 
     getVal() {
-        let indexLeft = this.page * this.limit;
-        let indexRight = indexLeft + this.limit;
-        if (!this.id)
-            this.elements = this.setOfData.slice(indexLeft, indexRight)
-        else {
-            let el = [];
-            for (let start = this.page * this.limit; start < (this.page + 1) * this.limit && start < cages.length; ++start) {
-                let valK = cages[start];
-                if (valK.idFarm === this.id) {
-                    el.push(valK)
+        return new Promise((resolve, reject) => {
+                let params = {
+                    skip: this.page * this.limit,
+                    limit: this.limit
                 }
+                let queryStr = queryToString(params);
+
+                axios.get(this.name + queryStr).then(resp => {
+                    this.elements = resp.data;
+                    resolve(resp.data);
+                }).catch(err => {
+                    reject(err);
+                })
             }
-            this.elements = el;
-        }
+        )
+
     }
 
     nextPage() {
@@ -114,6 +125,7 @@ export default class List {
         if (!this.canPrevious) {
             return;
         }
+        this.elements =
         this.setPage(this.page - 1)
     }
 

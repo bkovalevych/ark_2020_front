@@ -9,18 +9,25 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import strings from './res/localisation'
 import AboutUs from './components/aboutUs/aboutUs'
 import jwt from 'jwt-decode';
+import {sign} from './functions/user'
 
 import Velocity from 'velocity-animate'
 import "bootswatch/dist/cyborg/bootstrap.min.css"
-
+import {CookiesProvider, withCookies, Cookies} from 'react-cookie'
 import Profile from './components/profile/profile'
+import {instanceOf} from "prop-types";
 
 class App extends React.Component {
+    static propTypes = {
+        cookies: instanceOf(Cookies).isRequired
+    };
     constructor(props) {
         super(props);
+        const {cookies} = this.props;
         this.state = {
-            language: localStorage['language'] || 'en',
-            profile: localStorage['userToken']? jwt(localStorage['userToken']): null,
+            language: 'en',
+            token: cookies.get('token'),
+            profile: null,
             users: null,
             moveMedias: null,
             moveBases: null,
@@ -36,7 +43,7 @@ class App extends React.Component {
         // this.addUser = this.addUser.bind(this);
         // this.getMedia = getMedia.bind(this)
         // this.setSubscribes = this.setSubscribes.bind(this);
-        // this.setUser = this.setUser.bind(this);
+        this.setUser = this.setUser.bind(this);
         this.changeLanguage = this.changeLanguage.bind(this);
         // this.setFilterMedia = this.setFilterMedia.bind(this);
         // this.setFilterGroup = this.setFilterGroup.bind(this);
@@ -44,12 +51,13 @@ class App extends React.Component {
         // this.setUsers = this.setUsers.bind(this);
     }
 
-    addUser(val) {
-        let obj = {};
-        obj[val] = true;
-        let newVal = Object.assign(this.state.users, obj);
-        this.setState({users: newVal});
-    }
+
+    // addUser(val) {
+    //     let obj = {};
+    //     obj[val] = true;
+    //     let newVal = Object.assign(this.state.users, obj);
+    //     this.setState({users: newVal});
+    // }
 
     // setFilterUser(val) {
     //     this.setState({filterUsers: val});
@@ -72,6 +80,7 @@ class App extends React.Component {
     // }
 
     setUser(val) {
+
         this.setState({profile: val});
     }
 
@@ -137,6 +146,11 @@ class App extends React.Component {
     }
      componentDidMount(): void {
          App.backgroundOn();
+         if (!this.state.profile && this.state.token) {
+             sign(this.state.token).then(user => {
+                 this.setState({profile: user})
+             })
+         }
     //     let fetch = 0;
     //
     //     if (!this.state.mediaArr) {
@@ -223,7 +237,7 @@ class App extends React.Component {
                <Router>
                    {nam}
                    <OriginalMenu strings={strings}
-                                 user={true}
+                                 user={this.state.profile}
                                  changeLanguage={this.changeLanguage}
                                  lan={lan}/>
 
@@ -231,7 +245,7 @@ class App extends React.Component {
                        <Route exact path="/" component={WrappedAboutUs}/>*/}
                        <Route exact path="/farm" component={WrappedFarms}/>
                        <Route path="/cages" component={(props) =>{return <Cages strings={strings} {...props}/>}}/>
-                       <Route path="/user" component={(props) =>{return <Profile strings={strings} setUser={this.setUser} {...props}/>}} />
+                       <Route path="/user" component={(props) =>{return <Profile strings={strings} user ={this.state.profile} setUser={this.setUser} {...props}/>}} />
                    </Switch>
                </Router>
            </div>}</>
@@ -239,4 +253,4 @@ class App extends React.Component {
    }
 }
 
-export default App;
+export default withCookies(App);

@@ -3,16 +3,21 @@
   border-left: #7d7f7b solid 1px;
   border-right: #7d7f7b solid 1px;
 
-  background: rgba(137, 141, 132, 0.26);
+  background: rgba(137, 141, 132, 0.22);
   z-index: 1;
   position: absolute;
-  min-width: 410px;
+  width: 96%;
+  right: 2%;
   min-height: 100vh;
   padding: 5px 30px 50px 30px;
 }
 
+
 #root {
+  min-width: 490px;
   background: #2b2b2b;
+  margin-top: -21px;
+
 }
 
 /*.ball {*/
@@ -70,9 +75,9 @@ body {
 
 @media screen and (min-width: 900px) {
   .App {
-    margin: 60px 20px 0 250px;
-
-    width: 70%;
+    margin: 300px 0 50px 250px;
+    right: calc(2%);
+    width: calc(98% - 250px);
   }
 }
 

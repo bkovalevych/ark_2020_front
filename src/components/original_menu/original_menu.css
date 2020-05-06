@@ -1,4 +1,5 @@
 .box {
+
     width: 90%;
     display: flex;
     flex-wrap: wrap;
@@ -9,11 +10,11 @@
 }
 .box > *{
     flex: 1 1 80px;
-    --height: 20px;
+    --height: 45px;
 }
 
 .box .item_out:nth-of-type(2n + 1) {
-    top: -80px;
+    top: -96px;
 }
 .leftSide .item_out:nth-of-type(2n + 1) {
     top: -87px;
