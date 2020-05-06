@@ -98,6 +98,9 @@ class App extends React.Component {
         let root = document.getElementById('root');
         let container = document.createElement('div');
         let parent = document.createElement("div");
+        if (root == null) {
+            return;
+        }
         parent.className += " dark";
         root.appendChild(parent);
         parent.appendChild(container);
