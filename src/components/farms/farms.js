@@ -4,7 +4,6 @@ import List from '../utils/List';
 import './farms.css'
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowLeft, faArrowRight, faWarehouse} from '@fortawesome/free-solid-svg-icons'
-import divWithClassName from "react-bootstrap/esm/divWithClassName";
 import {withRouter} from 'react-router-dom'
 export default withRouter(function(props) {
     let id = '';
