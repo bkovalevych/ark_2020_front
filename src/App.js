@@ -2,7 +2,7 @@ import './App.css';
 import '../node_modules/uikit/dist/css/uikit.min.css';
 import  React from 'react';
 import Cages from './components/cages/cages';
-import Farms from './components/farms/farms'
+import Farms from './components/elements/elements'
 import OriginalMenu from './components/original_menu/original_menu';
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'

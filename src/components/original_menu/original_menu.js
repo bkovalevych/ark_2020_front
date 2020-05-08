@@ -17,7 +17,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 
 export default withRouter(function (props) {
-    const [selectedItem, setItem] = useState(0);
+    const [selectedItem, setItem] = useState(new Set([0]));
     const [lanShow, lanSet] = useState(false);
     const [animOn, setAnim] = useState(true);
     let openedTable = false;
@@ -55,7 +55,7 @@ export default withRouter(function (props) {
           case 8:
               goToLink('/otherFunctions');
       }
-      setItem(val);
+      setItem(new Set([val]));
     };
 
     const animationHandle = () => {
@@ -123,9 +123,9 @@ export default withRouter(function (props) {
         for (let index = 0; index < arrayText.length; ++index) {
             let text = arrayText[index];
             if (typeof text === typeof []) {
-                result.push(<OriginalMenuItem name={text[1]} icon={text[0]} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem}/>)
+                result.push(<OriginalMenuItem name={text[1]} icon={text[0]} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem} single={true}/>)
             } else
-            result.push(<OriginalMenuItem name={text} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem}/>)
+            result.push(<OriginalMenuItem name={text} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem} single={true}/>)
         }
         return result;
     };

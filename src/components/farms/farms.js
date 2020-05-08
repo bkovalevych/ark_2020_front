@@ -1,104 +1,40 @@
-import React, {useEffect, useState} from 'react';
-import Item from '../original_menu/original_menu_item'
-import List from '../utils/List';
-import './farms.css'
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faArrowLeft, faArrowRight, faWarehouse} from '@fortawesome/free-solid-svg-icons'
-import {withRouter} from 'react-router-dom'
-export default withRouter(function(props) {
-    let id = '';
-    let params = {};
-    if (props.location.search) {
-        let start = props.location.search.indexOf('id=');
-        id = props.location.search.slice(start + 3);
-    }
-
-    const colName = props.collectionName ;
-    const [page, setPage] = useState(0);
-    const [vis, setVis] = useState(null);
-    let farms = new List(colName, page, setPage, id);
-    let [selectedItem, setItem] = useState(null);
-    const goToLink = (val) => {
-        props.history.push(val);
-    };
+import Elements from '../elements/elements';
+import React, {useState} from 'react'
+import {faWarehouse} from '@fortawesome/free-solid-svg-icons'
+export default function(props) {
+    const icon = faWarehouse;
+    const collectionName = '/farm'
+    const [filter, setFilter] = useState(null);
+    const [selectedItems, setItem] = useState(new Set());
     const _setItem = (val) => {
-        if (colName === '/farm')
-            goToLink(`/cages?id=${val}`);
-        setItem(val)
-    };
-    const getVisualFarms = () => {
-        let visual_farms = [];
-        for (let index = 0; index < farms.elements.length; ++index) {
-            let elem = farms.elements[index];
-            let elemData = [];
-            for (let key in elem) {
-                let val = elem[key];
-                elemData.push(<div>{key}:{val}</div>)
-            }
-            visual_farms.push(<Item
-                icon={<FontAwesomeIcon icon={faWarehouse}/>}
-                name={elemData}
-                specialLink={elem.id}
-                setItem={_setItem}
-                selectedItem={selectedItem}
-            />)
+        if (selectedItems.has(val)) {
+            _unselectItem(val)
+            return
         }
-        return visual_farms;
+        let obj = Object.assign({farmId: []}, filter)
+        obj.farmId.push(val);
+        setFilter(obj);
+        selectedItems.add(val);
+        setItem(selectedItems);
+        console.log(filter)
+        console.log(selectedItems)
     }
-
-    const prev = () => {
-        setVis(null);
-        farms.previousPage()
-
-    };
-
-    const next = () => {
-        setVis(null);
-        farms.nextPage()
-    };
-
-    useEffect(() => {
-        if (vis == null) {
-            farms.getVal().then(data =>
-                setVis(getVisualFarms())
-            )
-        }
-
-    },[page])
-
+    const _unselectItem = (val) => {
+        filter.farmId.delete(val);
+        setFilter(filter);
+        selectedItems.delete(val);
+        setItem(selectedItems)
+    }
     return (
         <>
-
-
-            <div style={{position: 'relative'}}>
-
-                <div style={{
-
-                    width: '120px',
-                    marginRight: '-10px',
-                    float: 'right',
-                    color: '#1d7641',
-                    background: 'rgba(244, 244, 244, 0.8)',
-                    borderTopLeftRadius: '10px',
-                    borderTopRightRadius: '10px',
-                    padding: '5px'
-                }}>{colName}</div>
-
-            <div className="box_farm ">
-                {vis}
-
-                <div className="menuBarUp">
-                    <button disabled={!farms.canPrevious} onClick={prev} ><FontAwesomeIcon icon={faArrowLeft}/> {props.strings.previous}</button>
-                    {page + 1}
-                    <button disabled={!farms.canNext} onClick={next}><FontAwesomeIcon icon={faArrowRight}/>{props.strings.next}</button>
-                </div>
-                <div className="menuBarDown">
-                    <button disabled={!farms.canPrevious} onClick={prev}><FontAwesomeIcon icon={faArrowLeft}/> {props.strings.previous}</button>
-                    {page + 1}
-                    <button disabled={!farms.canNext} onClick={next}><FontAwesomeIcon icon={faArrowRight}/>{props.strings.next}</button>
-                </div>
-            </div>
-            </div>
+            <Elements filter={filter} icon={icon} collectionName={collectionName} setItem={_setItem} selectedItems={selectedItems}/>
         </>
     )
-})
+    // const filter = props.filter;
+    // const icon = props.icon
+    // const colName = props.collectionName ;
+    // const setItem = props.setItem;
+    // const selectedItems = props.selectedItems;
+
+
+}

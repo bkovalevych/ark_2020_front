@@ -2,20 +2,33 @@ import React from 'react'
 import './original_menu_item.css'
 export default function(props) {
     let className = "item_out";
-    if(props.specialLink === props.selectedItem)
-        className += ' checked';
-    return (
-        <div className={className} onClick={(e) => {
-
-
-            let elem = e.currentTarget.parentNode.children[props.selectedItem]
-            let prev_val = props.selectedItem;
+    const single = props.single;
+    const handler = (e) => {
+        if (single) {
+            let last = 0;
+            props.selectedItem.forEach(val => last = val)
+            let elem = e.currentTarget.parentNode.children[last]
+            let prev_val = last;
             props.setItem(props.specialLink);
-            if (props.selectedItem === prev_val) {
+            if (props.selectedItem.has(prev_val)) {
                 return;
             }
             elem.className = elem.className.replace(' checked', '');
-            e.target.className += ' checked'}}>
+            e.currentTarget.className += ' checked';
+        } else {
+            if (props.selectedItem.has(props.specialLink)) {
+                e.currentTarget.className = e.currentTarget.className.replace(' checked', '');
+            } else {
+                e.currentTarget.className += ' checked';
+            }
+            props.setItem(props.specialLink);
+        }
+    }
+    if(props.selectedItem.has(props.specialLink))
+        className += ' checked';
+    return (
+        <div className={className} onClick={handler}>
+
             <div className='item'>
                 <div className="item_inner">
                     {props.icon}
