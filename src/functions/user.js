@@ -1,6 +1,7 @@
 import axios from 'axios'
+import host from '../components/host'
 export const sign = (token) => {
-    let uri = '/user/sign';
+    let uri = host + '/user/sign';
     return new Promise((resolve, reject) => {
         axios.get(`${uri}?googleToken=${token}` )
             .then(resp => {

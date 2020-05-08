@@ -1,4 +1,5 @@
 import axios from 'axios'
+import host from '../host'
 //
 // let setOfData = [
 //     {paramA: "valA", paramB: "valB", paramC: "valC", paramD: "valD", id: '0'},
@@ -112,7 +113,7 @@ export default class List {
                 params.push(this.filter)
             }
             let queryStr = queryToString(params);
-            axios.get(this.name + queryStr).then(resp => {
+            axios.get(host + this.name + queryStr).then(resp => {
                 this.elements = resp.data;
                 resolve(resp.data);
             }).catch(err => {
