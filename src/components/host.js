@@ -1,1 +1,0 @@
-export default 'https://bee-hive-bit-server.herokuapp.com'

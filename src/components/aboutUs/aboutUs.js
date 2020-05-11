@@ -4,9 +4,8 @@ import './aboutUs.css';
 function AboutUs(props) {
     return (
         <div className='textNormal'>
-            <p>
-                {props.strings.mainInfo}
-            </p>
+            {props.strings.mainInfo}
+            <br/>
         </div>
     )
 }

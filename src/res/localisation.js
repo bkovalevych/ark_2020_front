@@ -2,6 +2,23 @@ import LocalizedStrings from 'react-localization';
 
  let strings = new LocalizedStrings({
  en:{
+     _id: 'id',
+     contains: 'contains',
+     add: 'Add',
+     select: 'Select',
+     normal: 'Normal',
+     deleteSelected: 'Delete selected',
+     unselect: 'Unselect',
+     registered: 'registered',
+     name: 'name',
+     location: 'location',
+     animalKind: 'animalKind',
+
+     capacity: 'capacity',
+     idFarm: 'idFarm',
+
+
+     locale: 'en-US',
      previous: 'previous',
      next: 'next',
      save: "Save",
@@ -40,6 +57,23 @@ import LocalizedStrings from 'react-localization';
 
  },
  ua: {
+     _id: 'id',
+     contains: 'Наявно',
+     add: 'Додати',
+     select: 'Виділити',
+     normal: 'Звичайний режим',
+     deleteSelected: 'Видалити виділене',
+     unselect: 'Відмінити виділення',
+     locale: 'ua',
+     registered: 'створено',
+     name: 'назва',
+     location: 'локація',
+     animalKind: 'вид',
+
+     capacity: 'кількість',
+     idFarm: 'id господарства',
+
+
      change: "Змінити",
      previous: 'попередня',
      next: 'наступна',

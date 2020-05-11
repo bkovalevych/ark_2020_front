@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import Item from '../original_menu/original_menu_item'
 import List from '../utils/List';
 import './elements.css'
@@ -6,24 +6,43 @@ import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faArrowLeft, faArrowRight, faWarehouse} from '@fortawesome/free-solid-svg-icons'
 import {withRouter} from 'react-router-dom'
 import {parse} from 'query-string'
+import ButtonsForList from '../utils/buttonsForList'
+import Loader from '../loader/loader'
 export default withRouter(function(props) {
+    const projectionAdd = props.projectionAdd;
     const filter = props.filter;
+    const projection = props.projection;
     const icon = props.icon
+    const color = props.color
     const colName = props.collectionName ;
     const setItem = props.setItem;
     const selectedItems = props.selectedItems;
     const [page, setPage] = useState(0);
+    const [fetch, setFetch] = useState(false)
+
     const [vis, setVis] = useState(null);
     let elements = new List(colName, page, setPage, filter);
 
     const _setItem = (val) => {
         setItem(val)
     };
+    const prepareValues = (key, val) => {
+        if (!projection.has(key)) {
+            return '';
+        }
+        if (key.match(/id/)) {
+            return <div>{props.strings[key]}: <span style={{fontSize:10}}>{val}</span></div>
+        }
+        if (key === 'registered') {
+            return <div>{props.strings[key]}: {new Date(val).toLocaleDateString(props.strings['locale'])}</div>
+        }
+        return <div>{props.strings[key]}: {val}</div>
+    }
     const getVisualFarms = (elements) => {
         return elements.map((value, index) => (<Item
-            icon={<FontAwesomeIcon icon={icon}/>}
-            name={Object.keys(value).map(key => (`${key}: ${value[key]}`))}
-            specialLink={index}
+            icon={<FontAwesomeIcon icon={icon} size={'2x'} color={color}/>}
+            name={Object.keys(value).map(key => (prepareValues(key, value[key])))}
+            specialLink={value['_id']}
             setItem={_setItem}
             selectedItem={selectedItems}
             key={index}
@@ -40,22 +59,22 @@ export default withRouter(function(props) {
         setVis(null);
         elements.nextPage()
     };
-
     useEffect(() => {
-        if (vis == null) {
-            elements.getVal().then(data =>
+        if (!fetch) {
+            setFetch(true)
+            elements.getVal().then(data => {
+                setFetch(false);
                 setVis(getVisualFarms(data))
-            )
+            })
         }
+    }, [page, filter])
 
-    },[page])
+
 
     return (
         <>
-
-
             <div style={{position: 'relative'}}>
-
+                {filter? JSON.stringify(filter): 'null'}
                 <div style={{
 
                     width: '120px',
@@ -66,11 +85,18 @@ export default withRouter(function(props) {
                     borderTopLeftRadius: '10px',
                     borderTopRightRadius: '10px',
                     padding: '5px'
-                }}>{colName}</div>
+                }}>
+                    <ButtonsForList
+                        icon={icon}
+                        color={color}
+                        projection={projectionAdd}
+                        name={colName}
+                        strings={props.strings}
+                    />
+                    <br/>{colName}</div>
 
             <div className="box_farm ">
-                {vis}
-
+                {fetch? <Loader /> : vis }
                 <div className="menuBarUp">
                     <button disabled={!elements.canPrevious} onClick={prev} ><FontAwesomeIcon icon={faArrowLeft}/> {props.strings.previous}</button>
                     {page + 1}

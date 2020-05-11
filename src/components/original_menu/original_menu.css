@@ -29,13 +29,13 @@
     display: flex;
 
 }
-.leftSide > .checked > .item {
+.checked > .item {
     background: rgba(48, 30, 204, 0.49);
 }
-.leftSide > .checked > .item:after {
+.checked > .item:after {
     border-top-color: rgba(48, 30, 204, 0.49);
 }
-.leftSide > .checked > .item:before {
+.checked > .item:before {
     border-bottom-color: rgba(48, 30, 204, 0.49);
 }
 

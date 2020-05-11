@@ -115,7 +115,7 @@ export default withRouter(function (props) {
             <FontAwesomeIcon icon={faEllipsisH} size={'2x'} color='white'/>,
             props.strings.otherFunctions,
         ]
-    ] : [props.strings.signUp];
+    ] : [];
     let index = 0;
 
     const render = (arrayText, initIndex) => {

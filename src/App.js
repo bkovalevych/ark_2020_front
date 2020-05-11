@@ -1,8 +1,8 @@
 import './App.css';
-import '../node_modules/uikit/dist/css/uikit.min.css';
+//import '../node_modules/uikit/dist/css/uikit.min.css';
 import  React from 'react';
 import Cages from './components/cages/cages';
-import Farms from './components/elements/elements'
+import Farms from './components/farms/farms'
 import OriginalMenu from './components/original_menu/original_menu';
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
@@ -10,12 +10,14 @@ import strings from './res/localisation'
 import AboutUs from './components/aboutUs/aboutUs'
 import jwt from 'jwt-decode';
 import {sign} from './functions/user'
-
+import Chart from './components/chart/chart'
 import Velocity from 'velocity-animate'
-import "bootswatch/dist/cyborg/bootstrap.min.css"
+import "bootswatch/dist/pulse/bootstrap.min.css"
 import {CookiesProvider, withCookies, Cookies} from 'react-cookie'
 import Profile from './components/profile/profile'
 import {instanceOf} from "prop-types";
+
+
 
 class App extends React.Component {
     static propTypes = {
@@ -24,6 +26,7 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         const {cookies} = this.props;
+        this.filterCage = {idCage: []};
         this.state = {
             language: 'en',
             token: cookies.get('token'),
@@ -40,6 +43,7 @@ class App extends React.Component {
             filterGroups: null,
             filterMedias: null
         };
+        this.setCage = this.setCage.bind(this);
         // this.addUser = this.addUser.bind(this);
         // this.getMedia = getMedia.bind(this)
         // this.setSubscribes = this.setSubscribes.bind(this);
@@ -49,6 +53,10 @@ class App extends React.Component {
         // this.setFilterGroup = this.setFilterGroup.bind(this);
         // this.setFilterUser = this.setFilterUser.bind(this)
         // this.setUsers = this.setUsers.bind(this);
+    }
+
+    setCage(val) {
+        this.filterCage = val;
     }
 
 
@@ -70,11 +78,11 @@ class App extends React.Component {
     // setFilterMedia(val) {
     //     this.setState({filterMedias: val});
     // }
-    
+
     // setSubscribes(val) {
     //     this.setState({subscribes: val});
     // }
-    
+
     // setUsers(val) {
     //     this.setState({users: val});
     // }
@@ -230,7 +238,8 @@ class App extends React.Component {
         };
         const WrappedFarms = (props) => {
             return <Farms strings={strings}
-                          collectionName={'/farm'}
+                          setFilterCage={this.setCage}
+                          filterCage={this.filterCage}
                             {...props}/>
         };
 
@@ -245,6 +254,9 @@ class App extends React.Component {
                                  lan={lan}/>
 
                    <Switch>
+                       <Route path="/chart" component={(props => {
+                           return <Chart filterCage={this.filterCage} {...props}/>
+                       })}/>
                        <Route exact path="/" component={WrappedAboutUs}/>*/}
                        <Route exact path="/farm" component={WrappedFarms}/>
                        <Route path="/cages" component={(props) =>{return <Cages strings={strings} {...props}/>}}/>

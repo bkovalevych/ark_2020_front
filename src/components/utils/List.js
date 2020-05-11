@@ -1,5 +1,4 @@
 import axios from 'axios'
-import host from '../host'
 //
 // let setOfData = [
 //     {paramA: "valA", paramB: "valB", paramC: "valC", paramD: "valD", id: '0'},
@@ -89,31 +88,34 @@ function writeVal(key, obj) {
 export default class List {
 
     constructor(collectionName, page, setPage, filter) {
-
-
         this.name = collectionName;
         this.filter = filter;
-        this.limit = 6;
+        this.limit = 7;
         this.page = page;
         this.setPage = setPage;
         this.canPrevious = this.page > 0;
         let indexRight = (this.page + 1) * this.limit;
         this.canNext = true //indexRight < this.setOfData.length;
         this.query = {}
-        this.getVal()
     }
 
-    getVal() {
+    getVal(unlimited) {
         return new Promise((resolve, reject) => {
             let params = [{
                 skip: this.page * this.limit,
                 limit: this.limit
             }]
+            if (unlimited) {
+                params = []
+            }
             if (this.filter) {
                 params.push(this.filter)
             }
             let queryStr = queryToString(params);
-            axios.get(host + this.name + queryStr).then(resp => {
+            axios.get( this.name + queryStr, {
+                withCredentials: true,
+                headers:{ContentType: "application/x-www-form-urlencoded",
+                Accept: "application/json" }}).then(resp => {
                 this.elements = resp.data;
                 resolve(resp.data);
             }).catch(err => {

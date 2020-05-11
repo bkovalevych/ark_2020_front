@@ -1,23 +1,23 @@
 .box_farm .item_out {
-    --width: 280px;
+    --width: 250px;
     --height: 200px;
 }
 
 .box_farm {
-    --width: 280px;
     --height: 200px;
     display: flex;
+    margin-bottom: 50px;
     flex-wrap: wrap;
     width: 100%;
-
     margin-left: 10px;
-    padding: calc(1.2 * var(--height) + 100px) 70px 20px;
+    padding: calc(1.2 * var(--height) + 100px) 70px 0px;
     background-color: rgba(244, 244, 244, 0.8);
+    transition: height, width .5s ease-in;
 }
 
 
 .box_farm > * {
-    flex: 1 1 105px;
+    flex: 1 1 200px;
     margin-top: 20px;
 }
 
@@ -81,5 +81,11 @@
 
 .menuBarUp {
     left: 35px;
-    top: -10px;
+    top: 35px;
+}
+
+@media screen and (min-width: 1250px) {
+    .box_farm {
+        max-height: 870px;
+    }
 }

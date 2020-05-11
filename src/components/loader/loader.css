@@ -1,46 +1,40 @@
 .bar {
     width: 15px;
-    height: 200px;
-    margin-top: 120px;
+    height: 150px;
+    margin-top: 100px;
     margin-left: 0;
-    transition: .3s all linear;
+    transition: .2s all linear;
     transform-origin: 0 50%;
 
 }
 
 .over {
-    transform: rotateX(30deg);
+    top: 150px;
+    margin-left: calc(50% - 200px);
     text-align: center;
     transform-style: preserve-3d;
-    animation: anim 10s infinite linear reverse;
-    transform-origin: 50% 50%;
-    border-radius: 500px;
-    font-size: 50px;
-    box-shadow:  0 10px 300px 20px #4750ff;
+    transform-origin: 50px 50px;
+
+    font-size: 40px;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    transform: rotateX(-40deg);
+}
+.over {
+    animation: anim 1s infinite linear alternate;
 }
 
-.loader {
-    margin-left: -325px;
-    margin-top: 80px;
-    box-shadow: #ff1f30 2px 2px 5px 5px;
-    position: fixed;
-    overflow-y: hidden;
-    height: 500px;
-    display: inline-flex;
-    width: 500px;
-    perspective: 250px;
-    transform-origin: 0 0;
-    border-radius: 250px;
-    border-bottom: #0a0a08 10px groove;
-    border-top: aqua 10px groove;
-}
+
 
 @keyframes anim {
 
-    25% {
-        transform: rotateY(-60deg);
+    0% {
+        transform: rotateX(-90deg);
     }
-    75% {
-        transform: rotateY(45deg);
+    100% {
+
+        transform: rotateX(90deg);
     }
+
 }
