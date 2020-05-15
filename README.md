@@ -1,2 +1,2 @@
-# ark_2020_front
-Source front code for BeeHiveBit
+# MuscleBit_front
+Source front code for MuscleBit
