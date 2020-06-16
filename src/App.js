@@ -13,7 +13,7 @@ import Controllers from './components/controllers/controllers'
 import {sign} from './functions/user'
 import Chart from './components/chart/chart'
 import Velocity from 'velocity-animate'
-import "bootswatch/dist/pulse/bootstrap.min.css"
+//import "bootswatch/dist/pulse/bootstrap.min.css"
 import {CookiesProvider, withCookies, Cookies} from 'react-cookie'
 import Profile from './components/profile/profile'
 import {instanceOf} from "prop-types";
