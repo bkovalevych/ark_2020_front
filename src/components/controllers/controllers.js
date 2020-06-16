@@ -56,7 +56,7 @@ export default withCookies(function (props) {
     }
     useEffect(() => {
         if (controllers == null) {
-            axios.get("/iot").then(resp => {
+            axios.get("https://bee-hive-bit-server.herokuapp.com/iot").then(resp => {
                 let data = resp.data;
                 if (data) {
                     let obj = {};

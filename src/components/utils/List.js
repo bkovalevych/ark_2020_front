@@ -112,7 +112,7 @@ export default class List {
                 params.push(this.filter)
             }
             let queryStr = queryToString(params);
-            axios.get( this.name + queryStr, {
+            axios.get( "https://bee-hive-bit-server.herokuapp.com" + this.name + queryStr, {
                 withCredentials: true,
                 headers:{ContentType: "application/x-www-form-urlencoded",
                 Accept: "application/json" }}).then(resp => {
