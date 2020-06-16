@@ -180,10 +180,10 @@ class App extends React.Component {
                            return <Chart filterCage={this.filterCage} {...props}/>
                        })}/>
                        <Route exact path="/" component={WrappedAboutUs}/>*/}
-                       <Route exact path="/farm" component={WrappedFarms}/>
+                       <Route exact path="/farms" component={WrappedFarms}/>
                        <Route path="/cages" component={(props) =>{return <Cages strings={strings} {...props}/>}}/>
-                       <Route path="/user" component={(props) =>{return <Profile strings={strings} user ={this.state.profile} setUser={this.setUser} {...props}/>}} />
-                       <Route path="/iot" component={props => <Controllers strings={strings} {...props} user={this.state.profile}/>} />
+                       <Route path="/profile" component={(props) =>{return <Profile strings={strings} user ={this.state.profile} setUser={this.setUser} {...props}/>}} />
+                       <Route path="/controllers" component={props => <Controllers strings={strings} {...props} user={this.state.profile}/>} />
                    </Switch>
                </Router>
            </div>}</>

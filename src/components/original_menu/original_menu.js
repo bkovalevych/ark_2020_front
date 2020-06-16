@@ -38,13 +38,13 @@ export default withRouter(function (props) {
               animationHandle();
               return;
           case 3:
-              goToLink('/user');
+              goToLink('/profile');
               break;
           case 4:
-              goToLink('/iot');
+              goToLink('/controllers');
               break;
           case 5:
-              goToLink('/farm');
+              goToLink('/farms');
               break;
           case 6:
               goToLink('/messages');
