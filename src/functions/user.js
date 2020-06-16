@@ -1,6 +1,6 @@
 import axios from 'axios'
 export const sign = (token) => {
-    let uri = '/user/sign';
+    let uri = 'https://bee-hive-bit-server.herokuapp.com/user/sign';
     return new Promise((resolve, reject) => {
         axios.get(`${uri}?googleToken=${token}` )
             .then(resp => {
