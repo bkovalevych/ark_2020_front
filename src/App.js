@@ -9,6 +9,7 @@ import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
 import strings from './res/localisation'
 import AboutUs from './components/aboutUs/aboutUs'
 import jwt from 'jwt-decode';
+import Controllers from './components/controllers/controllers'
 import {sign} from './functions/user'
 import Chart from './components/chart/chart'
 import Velocity from 'velocity-animate'
@@ -44,15 +45,9 @@ class App extends React.Component {
             filterMedias: null
         };
         this.setCage = this.setCage.bind(this);
-        // this.addUser = this.addUser.bind(this);
-        // this.getMedia = getMedia.bind(this)
-        // this.setSubscribes = this.setSubscribes.bind(this);
         this.setUser = this.setUser.bind(this);
         this.changeLanguage = this.changeLanguage.bind(this);
-        // this.setFilterMedia = this.setFilterMedia.bind(this);
-        // this.setFilterGroup = this.setFilterGroup.bind(this);
-        // this.setFilterUser = this.setFilterUser.bind(this)
-        // this.setUsers = this.setUsers.bind(this);
+
     }
 
     setCage(val) {
@@ -60,32 +55,6 @@ class App extends React.Component {
     }
 
 
-    // addUser(val) {
-    //     let obj = {};
-    //     obj[val] = true;
-    //     let newVal = Object.assign(this.state.users, obj);
-    //     this.setState({users: newVal});
-    // }
-
-    // setFilterUser(val) {
-    //     this.setState({filterUsers: val});
-    // }
-
-    // setFilterGroup(val) {
-    //     this.setState({filterGroups: val})
-    // }
-
-    // setFilterMedia(val) {
-    //     this.setState({filterMedias: val});
-    // }
-
-    // setSubscribes(val) {
-    //     this.setState({subscribes: val});
-    // }
-
-    // setUsers(val) {
-    //     this.setState({users: val});
-    // }
 
     setUser(val) {
 
@@ -162,53 +131,6 @@ class App extends React.Component {
                  this.setState({profile: user})
              })
          }
-    //     let fetch = 0;
-    //
-    //     if (!this.state.mediaArr) {
-    //         ++fetch;
-    //         getMedia().then(resp => {
-    //             if (!resp.data) {
-    //                 this.setState({mediaArr: {data: null}, fetch: this.state.fetch - 1});
-    //             } else {
-    //                 this.setState({mediaArr: resp, fetch: this.state.fetch - 1});
-    //             }
-    //         })
-    //     }
-    //     if (!this.state.users) {
-    //         ++fetch;
-    //         getUsers().then(resp => {
-    //             if (resp.errors) {
-    //                 return;
-    //             }
-    //             if (resp.data) {
-    //                 let obj = {};
-    //                 for (let key in resp.data) {
-    //                     let col = resp.data[key];
-    //                     obj[col._id] = col;
-    //                 }
-    //                 this.setState({users:obj, fetch: this.state.fetch - 1});
-    //             }
-    //         })
-    //     }
-    //     if (!this.state.subscribes && this.state.profile) {
-    //         ++fetch;
-    //         findSubscribes(this.state.profile._id).then(resp => {
-    //             if (resp.errors) {
-    //                 return;
-    //             }
-    //             if (resp.data) {
-    //                 let obj = {};
-    //                 for (let key in resp.data) {
-    //                     let col = resp.data[key];
-    //                     obj[col.user] = true;
-    //                 }
-    //                 this.setState({subscribes:obj, fetch: this.state.fetch - 1});
-    //             } else
-    //                 this.setState({subscribes:{}, fetch: this.state.fetch - 1});
-    //         })
-    //     }
-    //     this.setState({fetch: fetch})
-    //
     }
     render() {
         const nam = this.state.profile? <h2 style={{marginTop: '-100px', padding: "50px"}}>{this.state.profile.nickname}</h2> : '';
@@ -261,6 +183,7 @@ class App extends React.Component {
                        <Route exact path="/farm" component={WrappedFarms}/>
                        <Route path="/cages" component={(props) =>{return <Cages strings={strings} {...props}/>}}/>
                        <Route path="/user" component={(props) =>{return <Profile strings={strings} user ={this.state.profile} setUser={this.setUser} {...props}/>}} />
+                       <Route path="/iot" component={props => <Controllers strings={strings} {...props} user={this.state.profile}/>} />
                    </Switch>
                </Router>
            </div>}</>

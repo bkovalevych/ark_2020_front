@@ -1,0 +1,19 @@
+form {
+    padding: 20px;
+    background: rgba(142, 142, 142, 0.91);
+    display: grid;
+    grid-template-columns: 100px 200px;
+    grid-gap: 20px;
+}
+.onlineControllers, .controllers {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 200px 200px;
+}
+.onlineControllers {
+    background: rgba(30, 205, 171, 0.65);
+}
+
+.controllers {
+    background: rgba(142, 142, 142, 0.88);
+}

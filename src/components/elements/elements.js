@@ -74,7 +74,6 @@ export default withRouter(function(props) {
     return (
         <>
             <div style={{position: 'relative'}}>
-                {filter? JSON.stringify(filter): 'null'}
                 <div style={{
 
                     width: '120px',
