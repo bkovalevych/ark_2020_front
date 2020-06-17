@@ -5,8 +5,8 @@ import './controllers.css';
 import io from 'socket.io-client';
 import {useCookies, withCookies} from 'react-cookie';
 import axios from 'axios';
-
-const socket = io("https://bee-hive-bit-server.herokuapp.com");
+import SpecialButton from '../utils/buttonForRemote';
+const socket = io(process.env.REACT_APP_API_URL);
 
 
 
@@ -16,10 +16,14 @@ function getConfiguration() {
 }
 
 export default withCookies(function (props) {
-    const projectionAdd = ["ssid", "password", ""];
-
+    const projection = new Set(["specification", "registered", "idCage", "_id"]);
     const [controllers, setControllers] = useState(null);
     const [onlineControllers, setOnlineControllers] = useState({});
+    const [showAdd, setShowAdd] = useState(false)
+    const [selectedItem, selectItem] = useState(new Set());
+    const transfer = (remoteData) => {
+        socket.emit('remote', remoteData);
+    }
     socket.on('iotOffline', (id) => {
         delete onlineControllers[id];
         let newList = Object.assign({}, onlineControllers);
@@ -28,35 +32,17 @@ export default withCookies(function (props) {
     useEffect(() => {
         if (props.user)
             socket.emit("configUser", {idUser: props.user._id})
-
     }, [props.user])
     socket.on('iotOnline', controller => {
         onlineControllers[controller.idSocket] = controller;
         let newList = Object.assign({}, onlineControllers);
         setOnlineControllers(newList);
     })
-    const writeOnlineControllers = () => {
-        if (!onlineControllers || Object.keys(onlineControllers).size === 0) {
-            return "You dont have any controller online";
-        }
-        return Object.keys(onlineControllers).map((key, index) => <div key={index}>
-            <p>id {onlineControllers[key]._id.toString()}</p>
-            <p>registered {onlineControllers[key].registered.toString()}</p>
-            <p>socketId {onlineControllers[key].idSocket}</p>
-        </div>)
-    }
-    const writeControllers = () => {
-        if (!controllers || controllers.size === 0) {
-            return "You dont have any controller";
-        }
-        return Object.keys(controllers).map((key, index) => <div key={index}>
-            <p>id {controllers[key]._id.toString()}</p>
-            <p>registered {controllers[key].registered.toString()}</p>
-        </div>)
-    }
+
+
     useEffect(() => {
         if (controllers == null) {
-            axios.get("https://bee-hive-bit-server.herokuapp.com/iot").then(resp => {
+            axios.get("/iot").then(resp => {
                 let data = resp.data;
                 if (data) {
                     let obj = {};
@@ -73,6 +59,9 @@ export default withCookies(function (props) {
     return (
         <>
             <h1>Hello controllers</h1>
+
+
+
             <div>
                 To configure your controller connect to controllers wi-fi
                 <form>
@@ -83,12 +72,37 @@ export default withCookies(function (props) {
                     <input type="submit" value="configure"/>
                 </form>
             </div>
-            <div className="onlineControllers">
-                {writeOnlineControllers()}
-            </div>
-            <div className="controllers">
-                {writeControllers()}
-            </div>
+                <SpecialButton strings={props.strings}
+                               selectedItem={selectedItem}
+                               user={props.user}
+                               transfer={transfer}
+                               controllers={controllers}
+                               show={showAdd}
+                               setShow={setShowAdd}/>
+                <Elements
+                    projectionAdd={null}
+                    projection={projection}
+                    filter={null}
+                    icon={faChargingStation}
+                    collectionName={"/onlineControllers"}
+                    setItem={selectItem}
+                    selectedItems={selectedItem}
+                    strings={props.strings}
+                    color={"#3cdb47"}
+                    outerElements={onlineControllers}
+                />
+                <Elements
+                    projectionAdd={null}
+                    projection={projection}
+                    filter={null}
+                    icon={faChargingStation}
+                    collectionName={"/controllers"}
+                    setItem={() =>{}}
+                    selectedItems={new Set()}
+                    strings={props.strings}
+                    color={"#121312"}
+                    outerElements={controllers}
+                />
 
         </>
     )

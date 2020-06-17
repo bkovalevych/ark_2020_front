@@ -87,8 +87,9 @@ function writeVal(key, obj) {
 
 export default class List {
 
-    constructor(collectionName, page, setPage, filter) {
+    constructor(collectionName, page, setPage, filter, collection=null) {
         this.name = collectionName;
+        this.outerElements = collection;
         this.filter = filter;
         this.limit = 7;
         this.page = page;
@@ -98,8 +99,27 @@ export default class List {
         this.canNext = true //indexRight < this.setOfData.length;
         this.query = {}
     }
+    writeControllers(src) {
+        if (!src) {
+            return [];
+        }
+        let result = [];
+        for (let key in src) {
+            result.push(src[key]);
+        }
+        return result
+    }
 
     getVal(unlimited) {
+        if (this.outerElements) {
+            return new Promise((resolve) => {
+                let innerElements = this.writeControllers(this.outerElements);
+                let finalElements = innerElements.slice(this.page * this.limit, (this.page + 1) * this.limit)
+                resolve(
+                    finalElements
+                )}
+            );
+        }
         return new Promise((resolve, reject) => {
             let params = [{
                 skip: this.page * this.limit,
@@ -112,11 +132,13 @@ export default class List {
                 params.push(this.filter)
             }
             let queryStr = queryToString(params);
-            axios.get( "https://bee-hive-bit-server.herokuapp.com" + this.name + queryStr, {
+            axios.get(  this.name + queryStr, {
                 withCredentials: true,
-                method: "GET",
-                headers:{ContentType: "application/x-www-form-urlencoded",
-                Accept: "application/json" }}).then(resp => {
+                headers:{
+                    ContentType: "application/x-www-form-urlencoded",
+                    Accept: "application/json"
+                }
+            }).then(resp => {
                 this.elements = resp.data;
                 resolve(resp.data);
             }).catch(err => {

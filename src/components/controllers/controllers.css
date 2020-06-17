@@ -5,15 +5,44 @@ form {
     grid-template-columns: 100px 200px;
     grid-gap: 20px;
 }
-.onlineControllers, .controllers {
-    display: grid;
-    grid-gap: 20px;
-    grid-template-columns: 200px 200px;
-}
-.onlineControllers {
-    background: rgba(30, 205, 171, 0.65);
-}
 
-.controllers {
-    background: rgba(142, 142, 142, 0.88);
+.cellTime {
+    margin: 0;
+    padding: 0;
+    width: 70px;
+    height: 20px;
+    background: #09d3ac;
+}
+.header {
+    background: #cccc13;
+}
+.days {
+    display: grid;
+    grid-template-columns: repeat(8, 70px);
+    grid-column-gap: 3px;
+}
+.time {
+    display: grid;
+    grid-template-columns: 70px 490px;
+    grid-gap: 3px;
+}
+.timeHeader {
+    display: grid;
+    grid-gap: 3px;
+}
+.bigTable {
+    display: grid;
+    grid-gap: 3px;
+}
+.filledCell {
+    background: #ff1f30;
+}
+.outerWidget {
+    width: 550px;
+    display: grid;
+    grid-gap: 3px;
+    grid-template-columns: repeat(7, 70px);
+    grid-template-rows: repeat(24, 20px);
+    grid-auto-flow: column;
+    background: coral;
 }

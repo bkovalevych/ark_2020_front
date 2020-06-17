@@ -6,6 +6,7 @@ import Button from "react-bootstrap/Button";
 import {GoogleLogin, GoogleLogout} from 'react-google-login';
 import {sign} from "../../functions/user";
 import {useCookies} from 'react-cookie'
+import {CardImg} from "react-bootstrap";
 export default function(props) {
     const [name, setName] = useState(props.user? props.user.name : '');
     const [edit, setEdit] = useState(false);
@@ -28,6 +29,9 @@ export default function(props) {
     };
     return (<>
         <Card size="sm" sm={2}>
+
+            { props.user?<CardImg variant="0" width="200" height='200' src={props.user.picture}/>  : ""}
+
             <Card.Header>
                 {props.user?
                     <GoogleLogout
@@ -44,21 +48,24 @@ export default function(props) {
                 />}
             </Card.Header>
             <Card.Body>
-                <Form onSubmit={(e) => {
+                <Form style={{display: 'block'}}
+                    onSubmit={(e) => {
                     e.preventDefault();
                     let object = props.user?
                         Object.assign(props.user, {name: name})
                         :{name: name};
                     props.setUser(object)}}
+
                 >
+
                     <Form.Group as={Row}>
                         <Form.Label>
                             Name
                         </Form.Label>
-                        <Form.Control disabled={!edit} type="text" onChange={(e) => {setName(e.target.value)}} value={name}/>
+                        <Form.Control disabled={!edit} type="text" style={{marginLeft: "20px", width: "180px"}} onChange={(e) => {setName(e.target.value)}} value={name}/>
                     </Form.Group>
-                    <Form.Group as={Row}>
-                        <Button onClick={() => {if (props.user) setEdit(!edit)}}>
+                    <Form.Group style={{height: "20px", margin: "30px 0 0 50px"}} as={Row}>
+                        <Button style={{marginRight: "20px"}} onClick={() => {if (props.user) setEdit(!edit)}}>
                             {props.strings.change}
                         </Button>
                         <Button type="submit">Save</Button>

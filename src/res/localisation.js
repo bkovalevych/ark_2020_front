@@ -2,6 +2,16 @@ import LocalizedStrings from 'react-localization';
 
  let strings = new LocalizedStrings({
  en:{
+     specification: "specialisation",
+     idCage: "idCage",
+
+     monday: "Mo",
+     tuesday: "Tu",
+     wednesday: "We",
+     thursday: "Th",
+     friday: "Fr",
+     saturday: "Sa",
+     sunday: "Su",
      _id: 'id',
      contains: 'contains',
      add: 'Add',
@@ -49,7 +59,7 @@ import LocalizedStrings from 'react-localization';
 
      animation: "animation",
      language: "language",
-     mainInfo: "With the advancement of technology, we have learned to transfer part of the environment to a computer for further interaction. It's about the media. We can receive sound (sound waves) and images (electromagnetic waves) by converting wave data into electric waves. Electric waves, on the other hand, can also output audio or images to share with others. For the business it is proposed to develop a system that accepts the movement of the person at the electric level, so that the exit would be able to convey the movement to another as a new kind of media. The goal is to reproduce certain movements, which in fact at the muscle level represents a change in the potential of neuronal cells. By affecting the resting potential of neuron cells from the outside, muscle contractions can be caused. These are skeletal muscles because they are more likely to interact with them. It is dangerous to control the tongue, heart, or other internal organs. Based on the interaction with nerve cells, some pathologies or diseases can also be identified. For example, myopathy is a disease that is not accompanied by pain, which can cause weakness in certain muscles.",
+     mainInfo: "Agriculture in Ukraine is one of the leading sectors of Ukraine's economy. In addition to the stable provision of the country's population with quality, safe, affordable food, Ukraine's agriculture is able to make a significant contribution to solving the world problem of hunger. Its production potential far exceeds the needs of the domestic market. In the structure of gross agricultural output, livestock accounts for more than 38%. In general, the tasks of animal husbandry are the production of high quality food and valuable raw materials for food and light industry. Thousands of small business structures live on livestock. These structures perform important economic functions and provide a wide range of services. In a specific direction, the system is designed for private enterprise, it can be small livestock and all its components. The purpose of the course work is to develop a software system for small livestock, which includes 4 parts: server part, web application, mobile application, smart device application. The software system should help increase the productivity of the economy, reduce efforts to manage it.",
 
      popular: "Popular",
      fresh: "Fresh",
@@ -57,6 +67,16 @@ import LocalizedStrings from 'react-localization';
 
  },
  ua: {
+     specification: "Специфікація",
+     idCage: "Клітка",
+
+     monday: "Пн",
+     tuesday: "Вт",
+     wednesday: "Ср",
+     thursday: "Чт",
+     friday: "Пт",
+     saturday: "Сб",
+     sunday: "Нд",
      _id: 'id',
      contains: 'Наявно',
      add: 'Додати',
@@ -85,7 +105,7 @@ import LocalizedStrings from 'react-localization';
      otherFunctions: 'Інші функції',
      farms: 'Господарства',
      aboutUs: "Про нас",
-     mainInfo: " З розвитком технологій ми навчились передавати частину оточення в комп’ютер для подальшої взаємодії. Розмова йде саме про медіа. Ми можемо приймати звук (звукові хвилі) та зображення (електромагнітні хвилі), перетворюючи дані хвилі в електричні. З іншого боку з електричних хвиль можна отримати на вихід теж звук, або зображення, щоб ділитись з іншими. Для бізнесу пропонується розробити систему, яка приймає рух людини на електричному рівні, щоб на вихід була можливість передати рух іншому як новий вид медіа. На меті стоїть відтворення тих чи інших рухів, що фактично на рівні м’язів являє собою зміну потенціалу клітин нейронів. Впливаючи на потенціал спокою клітин нейронів ззовні, можна викликати скорочення м’язів. Мова йде саме про скелетні м’язи, так як взаємодія з ними більш можлива. Контролювати язик, серце, або інші внутрішні органи небезпечно. На основі взаємодії з нервовими клітинами також можна виявити деякі патології або захворювання. Наприклад, міопатія – це захворювання, яке не супроводжується болем, може викликати слабкість певних м’язів.",
+     mainInfo: "Сільське господарство України — одна з провідних галузей економіки України. Крім стабільного забезпечення населення країни якісним, безпечним, доступним продовольством, сільське господарство України спроможне на вагомий внесок у розв'язання світової проблеми голоду. Його потенціал виробництва значно перевищує потреби внутрішнього ринку. У структурі валової продукції сільського господарства, тваринництво становить понад 38 %. Загалом завдання тваринництва полягають у виробництві високоякісних продуктів харчування та цінної сировини для харчової та легкої промисловості. За рахунок тваринництва живуть тисячі малих структур підприємництва. Ці структури виконують важливі економічні функції та надають широкий спектр послуг. За конкретним спрямуванням система розрахована на приватне підприємництво господарства, це може бути дрібне тваринництво та всі його складові частини. Мета завдання курсової роботи розробити програмну систему для дрібного тваринництва, що включає 4 частини: серверну частину, веб-застосунок, мобільний застосунок, застосунок розумного пристрою. Програмна система повинна допомогти збільшити продуктивність господарства, зменшити зусилля щодо його ведення.",
      menuLogout: "Вийти",
      menuLogin: "Зайти",
      menuMain: "Головна",

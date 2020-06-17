@@ -17,6 +17,8 @@ export default function(props) {
     const [showAdd, setShowAdd] = useState(false);
     return (
         <div>
+            {!fields? "":
+                <>
             <Modal
                 size="lg"
                 aria-labelledby="contained-modal-title-vcenter"
@@ -61,6 +63,7 @@ export default function(props) {
                 </Modal.Footer>
             </Modal>
             <button onClick={() => {setShowAdd(true)}}>{s.add}</button>
+            </>}
             {/*<button>{s.select}</button>*/}
             {/*<button>{s.unselect}</button>*/}
             {/*<button onClick={() => {*/}

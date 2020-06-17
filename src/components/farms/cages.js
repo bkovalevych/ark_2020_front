@@ -30,7 +30,7 @@ export default withCookies(function (props) {
                 strings={props.strings}
                 color={color}
             />
-            {JSON.stringify(filter)}
+
         </>
     )
 })

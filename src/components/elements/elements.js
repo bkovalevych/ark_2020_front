@@ -14,6 +14,7 @@ export default withRouter(function(props) {
     const projection = props.projection;
     const icon = props.icon
     const color = props.color
+    const outerElements = props.outerElements;
     const colName = props.collectionName ;
     const setItem = props.setItem;
     const selectedItems = props.selectedItems;
@@ -21,7 +22,7 @@ export default withRouter(function(props) {
     const [fetch, setFetch] = useState(false)
 
     const [vis, setVis] = useState(null);
-    let elements = new List(colName, page, setPage, filter);
+    let elements = new List(colName, page, setPage, filter, outerElements);
 
     const _setItem = (val) => {
         setItem(val)
@@ -51,8 +52,7 @@ export default withRouter(function(props) {
 
     const prev = () => {
         setVis(null);
-        elements.previousPage()
-
+        elements.previousPage();
     };
 
     const next = () => {
@@ -68,6 +68,15 @@ export default withRouter(function(props) {
             })
         }
     }, [page, filter])
+    useEffect(() => {
+        if (outerElements != null && Object.keys(outerElements).length !== 0) {
+            elements.getVal().then(data => {
+                setVis(getVisualFarms(data));
+                setFetch(false)
+            })
+        }
+
+    },[outerElements])
 
 
 
