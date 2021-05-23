@@ -37,19 +37,34 @@ export default function(props) {
                         gap: '30px',
                         gridTemplateColumns: "180px 1fr"
                     }}>
-                        {fields.map(val => (
-                            <>
-                                <label >
-                                    {s[val]}
-                                </label>
-                                <input type='text'
-                                       name={val}
-                                       onInput={(e) => {
-                                           fieldValues[val] = e.target.value;
-                                           setFieldValues(fieldValues)
-                                       }}/>
-                            </>
-                        ))}
+                        {fields.map(val => {
+                            let res = null;
+                            if (typeof val === typeof '') {
+                                res = <input type='text'
+                                             name={val}
+                                             onInput={(e) => {
+                                                 fieldValues[val] = e.target.value;
+                                                 setFieldValues(fieldValues)
+                                             }}/>
+                            }
+                            else if (val.type === 'select') {
+
+                                res = <select name={val.name} onInput={(e) => {
+                                    fieldValues[val] = e.target.value;
+                                    setFieldValues(fieldValues)
+                                }}>
+                                    {val.options.map(opt => (<option value={opt}>{props.strings[opt]}</option>))}
+                                </select>
+                            }
+                            return (<>
+                                    <label >
+                                        {s[val]}
+                                    </label>
+                                    {res}
+                                </>)
+                        }
+
+                        )}
                     </div>
 
                 </Modal.Body>

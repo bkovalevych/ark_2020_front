@@ -1,8 +1,7 @@
 import './App.css';
 //import '../node_modules/uikit/dist/css/uikit.min.css';
 import  React from 'react';
-import Cages from './components/cages/cages';
-import Farms from './components/farms/farms'
+import Users from './components/moveMedia/users'
 import OriginalMenu from './components/original_menu/original_menu';
 
 import { Switch, Route, BrowserRouter as Router } from 'react-router-dom'
@@ -12,7 +11,7 @@ import jwt from 'jwt-decode';
 import {sign} from './functions/user'
 import Chart from './components/chart/chart'
 import Velocity from 'velocity-animate'
-import "bootswatch/dist/pulse/bootstrap.min.css"
+import "bootswatch/dist/darkly/bootstrap.min.css"
 import {CookiesProvider, withCookies, Cookies} from 'react-cookie'
 import Profile from './components/profile/profile'
 import {instanceOf} from "prop-types";
@@ -155,7 +154,7 @@ class App extends React.Component {
                 duration: 1000, easing: "easeInSine", delay: 2000
             });
     }
-     componentDidMount(): void {
+     componentDidMount() {
          App.backgroundOn();
          if (!this.state.profile && this.state.token) {
              sign(this.state.token).then(user => {
@@ -237,15 +236,34 @@ class App extends React.Component {
                           {...props}/>
         };
         const WrappedFarms = (props) => {
-            return <Farms strings={strings}
-                          setFilterCage={this.setCage}
-                          filterCage={this.filterCage}
-                            {...props}/>
+            return <Users strings={strings}
+                          //setFilterCage={this.setCage}
+                          //filterCage={this.filterCage}
+                          {...props}/>
         };
 
         return (
            <>
+
             <div className="App" onClick={anim}>
+                <div style={{position: 'relative', display:'inline-flex', top: '-100px', background: '#000', paddingTop: '50px', height:"150px", borderRadius: '100px', zIndex: '-2'}}>
+                    <div className='item_out'>
+
+                        <div className='item' >
+                            <div className="item_inner">
+                                <div className='item_text' style={{height: '30px', top: '10px', background: 'rgba(35,208,6,0.93)', fontSize:'30px'}}>Muscle</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='item_out' style={{marginLeft: '50px', zIndex: '-1'}}>
+                        <div className='item' >
+                            <div className="item_inner" >
+                                <div className='item_text' style={{height: '30px', top: '10px', background: 'rgba(205,28,156,0.93)', fontSize:'30px'}}>Bit</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                <Router>
                    {nam}
                    <OriginalMenu strings={strings}
@@ -258,12 +276,14 @@ class App extends React.Component {
                            return <Chart filterCage={this.filterCage} {...props}/>
                        })}/>
                        <Route exact path="/" component={WrappedAboutUs}/>*/}
-                       <Route exact path="/farm" component={WrappedFarms}/>
-                       <Route path="/cages" component={(props) =>{return <Cages strings={strings} {...props}/>}}/>
+                       <Route exact path="/moveMedia" component={WrappedFarms}/>
                        <Route path="/user" component={(props) =>{return <Profile strings={strings} user ={this.state.profile} setUser={this.setUser} {...props}/>}} />
                    </Switch>
                </Router>
-           </div>}</>
+
+           </div>}
+
+           </>
        );
    }
 }

@@ -20,18 +20,14 @@
 
 }
 
-/*.ball {*/
-/*  border-radius: 200px;*/
-/*  background-color: #f3fff8;*/
-/*  position: absolute;*/
-/*  transform-origin: 600% 500%;*/
-/*}*/
+
 .ball {
+  --color: rgba(77, 170, 51, 0.62);
   position: absolute;
   color: #f3fff8;
   width: 75px;
   height: 43.30px;
-  background-color: #cccc13;
+  background-color: var(--color);
 }
 
 .ball:before,
@@ -45,14 +41,14 @@
 
 .ball:before {
   bottom: 100%;
-  border-bottom: 22px solid #cccc13;
+  border-bottom: 22px solid var(--color);
 }
 
 .ball:after {
   top: 100%;
   width: 0;
   left:0;
-  border-top: 22px solid #cccc13;
+  border-top: 22px solid var(--color);
 }
 body {
   background-color: #2b2b2b;
@@ -62,8 +58,8 @@ body {
 
 .dark {
 
+  background: #282828;
 
-  background-repeat: no-repeat;
   position: fixed;
   z-index: 0;
   width: 100%;
@@ -75,7 +71,7 @@ body {
 
 @media screen and (min-width: 900px) {
   .App {
-    margin: 300px 0 50px 250px;
+    margin: 150px 0 50px 250px;
     right: calc(2%);
     width: calc(98% - 250px);
   }
@@ -99,3 +95,34 @@ body {
 .App-link {
   color: #09d3ac;
 }
+
+.beauty-window {
+  transform: translate3d(0,0,0);
+  transform-style: preserve-3d;
+  z-index: 1;
+  top: 200px;
+  right:20px;
+  overflow: hidden;
+  width: 500px;
+  height: 200px;
+  background: #000000;
+  color: #000000;
+}
+
+.beauty-window > p {
+  position: relative;
+  z-index: 3;
+}
+
+.square {
+  z-index: 2;
+  transform: translateZ(-200px);
+  top:100px;
+  width: 400px;
+  height: 50px;
+  position: fixed;
+  background: rgba(222, 222, 222, 0.48);
+  mix-blend-mode: screen;
+}
+
+

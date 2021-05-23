@@ -2,6 +2,9 @@ import LocalizedStrings from 'react-localization';
 
  let strings = new LocalizedStrings({
  en:{
+     play: 'play',
+     private: "private",
+     public: "public",
      _id: 'id',
      contains: 'contains',
      add: 'Add',
@@ -53,10 +56,15 @@ import LocalizedStrings from 'react-localization';
 
      popular: "Popular",
      fresh: "Fresh",
-     tags: "Tags"
+     tags: "Tags",
+     record: 'record'
 
  },
  ua: {
+     record: 'записати',
+     play: 'запустити',
+     private: "приватний",
+     public: "публічний",
      _id: 'id',
      contains: 'Наявно',
      add: 'Додати',

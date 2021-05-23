@@ -4,6 +4,7 @@
 }
 
 .box_farm {
+    --color: rgba(60, 63, 65, 0.94);
     --height: 200px;
     display: flex;
     margin-bottom: 50px;
@@ -11,7 +12,7 @@
     width: 100%;
     margin-left: 10px;
     padding: calc(1.2 * var(--height) + 100px) 70px 0px;
-    background-color: rgba(244, 244, 244, 0.8);
+    background-color: var(--color);
     transition: height, width .5s ease-in;
 }
 
@@ -49,14 +50,14 @@
     left: 10px;
 
     margin-top: calc(-1.2 * var(--height) - 130px);
-    border-bottom: 30px solid rgba(244, 244, 244, 0.8);
+    border-bottom: 30px solid var(--color);
 }
 
 .box_farm:after {
     right: -10px;
     top: calc(100%);
     margin-left: 0;
-    border-top: 30px solid rgba(244, 244, 244, 0.8);
+    border-top: 30px solid var(--color);
 }
 
 .menuBarUp > button, .menuBarDown > button {

@@ -13,3 +13,17 @@ export const sign = (token) => {
         })
     })
 }
+
+export const play = (id) => {
+    return new Promise((resolve, reject) => {
+        axios.get(`/play/${id}` )
+            .then(resp => {
+                let data = resp.data;
+                if (data)
+                    resolve(resp.data);
+                reject();
+            }).catch(err => {
+            reject(err);
+        })
+    })
+}

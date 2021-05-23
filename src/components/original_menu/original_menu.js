@@ -5,10 +5,9 @@ import './original_menu.css'
 import ChangeLanguage from '../changeLanguage/changeLanguage';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
-    faWarehouse,
+    faWaveSquare,
     faEnvelope,
-    faChartLine,
-    faEllipsisH,
+    faUserFriends,
     faBars,
     faChargingStation,
     faUser,
@@ -44,16 +43,14 @@ export default withRouter(function (props) {
               goToLink('/iot');
               break;
           case 5:
-              goToLink('/farm');
+              goToLink('/moveMedia');
               break;
           case 6:
               goToLink('/messages');
               break;
           case 7:
-              goToLink('/chart');
+              goToLink('/groups');
               break;
-          case 8:
-              goToLink('/otherFunctions');
       }
       setItem(new Set([val]));
     };
@@ -96,24 +93,21 @@ export default withRouter(function (props) {
 
     const textForUser = props.user? [
         [
-            <FontAwesomeIcon icon={faChargingStation} size={'2x'} color='#ef35ff'/>,
+            <FontAwesomeIcon icon={faChargingStation} size={'2x'} color='#0b100f'/>,
             props.strings.controllers
         ],
         [
-            <FontAwesomeIcon icon={faWarehouse} size={'2x'} color='#ff4d26'/>,
-            props.strings.farms
+            <FontAwesomeIcon icon={faWaveSquare} size={'2x'} color='#0b100f'/>,
+            props.strings.menuMoveMedia
         ],
         [
-            <FontAwesomeIcon icon={faEnvelope} size={'2x'} color='#3fff5e'/>,
+            <FontAwesomeIcon icon={faEnvelope} size={'2x'} color='#0b100f'/>,
             props.strings.messages
         ],
+
         [
-            <FontAwesomeIcon icon={faChartLine} size={'2x'} color='#3f7dff'/>,
-            props.strings.chart,
-        ],
-        [
-            <FontAwesomeIcon icon={faEllipsisH} size={'2x'} color='white'/>,
-            props.strings.otherFunctions,
+            <FontAwesomeIcon icon={faUserFriends} size={'2x'} color='#0b100f'/>,
+            props.strings.menuGroups,
         ]
     ] : [];
     let index = 0;
@@ -123,9 +117,9 @@ export default withRouter(function (props) {
         for (let index = 0; index < arrayText.length; ++index) {
             let text = arrayText[index];
             if (typeof text === typeof []) {
-                result.push(<OriginalMenuItem name={text[1]} icon={text[0]} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem} single={true}/>)
+                result.push(<OriginalMenuItem name={text[1]} icon={text[0]} specialLink={initIndex + index} setItem={_setItem} key={initIndex + index} selectedItem={selectedItem} single={true}/>)
             } else
-            result.push(<OriginalMenuItem name={text} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem} single={true}/>)
+            result.push(<OriginalMenuItem name={text} key={initIndex + index} specialLink={initIndex + index} setItem={_setItem} selectedItem={selectedItem} single={true}/>)
         }
         return result;
     };

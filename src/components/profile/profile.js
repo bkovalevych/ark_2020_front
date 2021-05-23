@@ -22,6 +22,7 @@ export default function(props) {
         setCookie('token', tokenId);
         sign(tokenId).then(user => {
             props.setUser(user);
+
         }).catch(err => {
             console.log(err);
         });

@@ -5,7 +5,7 @@
     width: var(--width);
     padding: 0 5px 8px 5px;
     /*height: var(--height);*/
-    background-color: #cc8a21;
+    background-color: rgba(48, 30, 204, 0.49);
 }
 
 .zoom_in {
@@ -16,6 +16,7 @@
 .item_out {
     --width: 150px;
     --height: 63px;
+    --background: rgba(56, 155, 158, 0.87);
     margin-left: calc(var(--width) / -4);
     margin-right: calc(var(--width) / -4);
     margin-bottom: calc(var(--height) + 120px);
@@ -33,14 +34,14 @@
 
 .item:before {
     bottom: 100%;
-    border-bottom: 24px solid #cc8a21;
+    border-bottom: 24px solid rgba(48, 30, 204, 0.49);
 }
 
 .item:after {
     z-index: 0;
     top: 100%;
     width: 0;
-    border-top: 24px solid #cc8a21;
+    border-top: 24px solid rgba(48, 30, 204, 0.49);
 }
 
 .item_text {
@@ -51,9 +52,9 @@
     text-wrap: normal;
     border-radius: 15px;
     line-height: 25px;
-    color: white;
+    color: #c7c7c7;
     font-size: 18px;
-    background: rgba(40, 44, 52, 0.37);
+    background: rgba(4, 47, 130, 0.37);
     margin-left: 10px;
     margin-right: 10px;
     height: var(--height);
@@ -62,13 +63,13 @@
 
 
 .box > .checked > .item {
-    background: rgba(48, 30, 204, 0.49);
+    background: #cc8a21;
 }
 .box > .checked > .item:after {
-    border-top-color: rgba(48, 30, 204, 0.49);
+    border-top-color: #cc8a21;
 }
 .box > .checked > .item:before {
-    border-bottom-color: rgba(48, 30, 204, 0.49);
+    border-bottom-color: #cc8a21;
 }
 
 .item_inner {
@@ -78,9 +79,9 @@
     margin-top: -23.5px;
     position: relative;
     width: calc(var(--width) - 10px);
-    transition: ease-in .3s;
+    transition: all ease-in .3s;
     /*height: calc(var(--height) - 7px);*/
-    background-color: #cccc13;
+    background-color: var(--background);
 }
 
 .item_inner:before,
@@ -96,20 +97,18 @@
 .item_inner:before {
     transition: ease-in .3s;
     bottom: 100%;
-    border-bottom: 20px solid #cccc13;
+    border-bottom: 20px solid var(--background);
 }
 
 .item_inner:after {
     transition: ease-in .3s;
     width: 0;
-    border-top: 20px solid #cccc13;
+    border-top: 20px solid var(--background);
 }
 
 
 
-.item:hover .item_inner:before {
-    border-bottom: 5px solid #cccc13;
-}
-.item:hover .item_inner:after {
-    border-top: 5px solid #cccc13;
+.item:hover > .item_inner {
+    width: calc(var(--width) - 6px);
+    transform: translate(-6px, 0);
 }

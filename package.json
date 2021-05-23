@@ -16,6 +16,7 @@
     "chart.js": "^2.9.3",
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
+    "lodash": "^4.17.21",
     "prop-types": "^15.7.2",
     "query-string": "^6.12.1",
     "react": "^16.12.0",
@@ -25,9 +26,12 @@
     "react-dom": "^16.12.0",
     "react-google-login": "^5.1.10",
     "react-localization": "^1.0.15",
+    "react-redux": "^7.2.4",
     "react-router": "^5.1.2",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^3.4.1",
+    "redux": "^4.1.0",
+    "redux-saga": "^1.1.3",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
     "uikit": "^3.2.3",
@@ -56,5 +60,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://bee-hive-bit-server.herokuapp.com"
+  "proxy": "http://localhost:5000"
 }

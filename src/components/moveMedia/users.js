@@ -2,9 +2,9 @@ import Elements from '../elements/elements';
 import React, {useEffect, useState} from 'react'
 import {faWarehouse} from '@fortawesome/free-solid-svg-icons'
 import {withCookies} from 'react-cookie'
-import Cages from './cages'
+import Moves from './move'
 
-class Farms extends React.Component {
+class Users extends React.Component {
     constructor(params) {
         super(params);
         this.state = {
@@ -44,23 +44,23 @@ class Farms extends React.Component {
     render() {
         return (
             <>
-                <Elements
-                    projectionAdd={this.projectionAdd}
-                    projection={this.projection}
-                    filter={null}
-                    icon={this.icon}
-                    color={this.color}
-                    collectionName={this.collectionName}
-                    setItem={this._setItem(
-                        this.state.filter,
-                        this.state.selectedItems,
-                        (val) => {this.setState({filter: val})},
-                        (val) => {this.setState({selectedItems: val})},
-                        'idFarm')}
-                    selectedItems={this.state.selectedItems}
-                    strings={this.props.strings}
-                />
-                <Cages
+                {/*<Elements*/}
+                {/*    projectionAdd={this.projectionAdd}*/}
+                {/*    projection={this.projection}*/}
+                {/*    filter={null}*/}
+                {/*    icon={this.icon}*/}
+                {/*    color={this.color}*/}
+                {/*    collectionName={this.collectionName}*/}
+                {/*    setItem={this._setItem(*/}
+                {/*        this.state.filter,*/}
+                {/*        this.state.selectedItems,*/}
+                {/*        (val) => {this.setState({filter: val})},*/}
+                {/*        (val) => {this.setState({selectedItems: val})},*/}
+                {/*        'idFarm')}*/}
+                {/*    selectedItems={this.state.selectedItems}*/}
+                {/*    strings={this.props.strings}*/}
+                {/*/>*/}
+                <Moves
                     filterCage={this.props.filterCage}
                     setFilterCage={this.props.setFilterCage}
                     setItem={this._setItem}
@@ -71,4 +71,4 @@ class Farms extends React.Component {
         )
     }
 }
-export default Farms;
+export default Users;

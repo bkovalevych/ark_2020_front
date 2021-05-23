@@ -38,10 +38,20 @@ export default withRouter(function(props) {
         }
         return <div>{props.strings[key]}: {val}</div>
     }
+
+    const prepareAndAddButtons = (value) => {
+        let result = Object.keys(value).map(key => (prepareValues(key, value[key])));
+        if (props.buttons) {
+            result.push(props.buttons.map(func => (func(value._id))))
+        }
+        return result;
+    }
+
     const getVisualFarms = (elements) => {
         return elements.map((value, index) => (<Item
+            single={props.single}
             icon={<FontAwesomeIcon icon={icon} size={'2x'} color={color}/>}
-            name={Object.keys(value).map(key => (prepareValues(key, value[key])))}
+            name={prepareAndAddButtons(value)}
             specialLink={value['_id']}
             setItem={_setItem}
             selectedItem={selectedItems}
@@ -64,6 +74,9 @@ export default withRouter(function(props) {
             setFetch(true)
             elements.getVal().then(data => {
                 setFetch(false);
+                if (data === null || typeof data === typeof [] && data.length === 0) {
+                    elements.canNext = false;
+                }
                 setVis(getVisualFarms(data))
             })
         }
@@ -74,7 +87,7 @@ export default withRouter(function(props) {
     return (
         <>
             <div style={{position: 'relative'}}>
-                {filter? JSON.stringify(filter): 'null'}
+
                 <div style={{
 
                     width: '120px',
